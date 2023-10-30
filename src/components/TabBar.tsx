@@ -90,7 +90,7 @@ export const TabBar = () => {
           {tabs.map((tab, index) => (
             <Tab
               key={index.toString()}
-              label={tab}
+              label={tab.tab}
               {...a11yProps(index, value)}
             />
           ))}
@@ -103,7 +103,7 @@ export const TabBar = () => {
           index={index}
           dir={theme.direction}
         >
-          {tab}
+          {tab.component}
         </TabPanel>
       ))}
     </Box>
