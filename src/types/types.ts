@@ -4,3 +4,8 @@ export type TabPanelPropsType = {
   index: number;
   value: number;
 };
+
+export type TabType = {
+  tab: string;
+  component: React.ReactNode;
+};
