@@ -5,7 +5,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { theme } from "../utils";
+import { Script } from "./";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -62,12 +62,12 @@ export const TabBar = () => {
   const theme = useTheme();
   const [value, setValue] = useState(0);
   const [tabs, setTabs] = useState([
-    "@User Chat Window",
-    "@FinUser Chat Window",
-    "Chat History",
-    "Transcripts",
-    "Script",
-    "Step Through",
+    { tab: "@User Chat Window", component: <></> },
+    { tab: "@FinUser Chat Window", component: <></> },
+    { tab: "Chat History", component: <></> },
+    { tab: "Transcripts", component: <></> },
+    { tab: "Script", component: <Script /> },
+    { tab: "Step Through", component: <></> },
   ]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
