@@ -7,5 +7,5 @@ export type TabPanelPropsType = {
 
 export type TabType = {
   tab: string;
-  component: React.ReactNode;
+  component: JSX.Element;
 };
