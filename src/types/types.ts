@@ -9,3 +9,10 @@ export type TabType = {
   tab: string;
   component: JSX.Element;
 };
+
+export type TranscriptsBreadCrumbsPropsType = {
+  links: string[];
+  handleBreadCrumbClick: (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => void;
+};
