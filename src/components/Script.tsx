@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
 export const Script = () => {
-  const [script, setScript] = useState(`# AGENT: InvestorReport		
+  const initialScript = `# AGENT: InvestorReport		
 
 
   REPEAT: 6
@@ -135,15 +135,21 @@ Manager, DataAgent, Thinker, Assistant, ReportWriter, Critic, @User, @FinUser, S
 <Instruction: SpeakerCommunication>
 Manager, DataAgent:
 <Instruction: UserCommunication>
-`);
+`;
+  const [currentScript, setCurrentScript] = useState(initialScript);
+  const [script, setScript] = useState(initialScript);
   const onChange = useCallback((val: string) => {
-    setScript(val);
+    setCurrentScript(val);
   }, []);
+
+  const handleSave = () => {
+    setScript(currentScript);
+  };
 
   return (
     <>
       <CodeMirror
-        value={script}
+        value={currentScript}
         height="79vh"
         placeholder={"Your script here."}
         onChange={onChange}
@@ -156,7 +162,13 @@ Manager, DataAgent:
           justifyContent: "flex-end",
         }}
       >
-        <Button variant="contained">Save</Button>
+        <Button
+          variant="contained"
+          onClick={handleSave}
+          disabled={currentScript === script}
+        >
+          Save
+        </Button>
       </Box>
     </>
   );
