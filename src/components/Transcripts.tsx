@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 export const Transcripts = () => {
   const [speakers, setSpeakers] = useState<string[]>([
@@ -18,7 +18,15 @@ export const Transcripts = () => {
 
   return (
     <Box>
-      <Typography>Transcripts</Typography>
+      {speakers.map((speaker, index) => (
+        <Button
+          variant="outlined"
+          key={index.toString()}
+          sx={{ textTransform: "none", display: "block", mb: 1 }}
+        >
+          {speaker}
+        </Button>
+      ))}
     </Box>
   );
 };
