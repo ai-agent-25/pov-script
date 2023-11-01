@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { cloneDeep } from "lodash";
 
 export const Transcripts = () => {
   const [speakers, setSpeakers] = useState<string[]>([
@@ -16,6 +17,17 @@ export const Transcripts = () => {
     "@User",
   ]);
   const [selectedSpeaker, setSelectedSpeaker] = useState<string | null>(null);
+  const [links, setLinks] = useState<string[]>(["Transcripts"]);
+
+  useEffect(() => {
+    if (selectedSpeaker) {
+      const currentLinks = cloneDeep(links);
+      currentLinks[1] = selectedSpeaker;
+      setLinks(currentLinks);
+    } else {
+      setLinks(["Transcripts"]);
+    }
+  }, [selectedSpeaker]);
 
   return (
     <Box>
