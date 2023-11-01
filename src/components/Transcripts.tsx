@@ -15,6 +15,7 @@ export const Transcripts = () => {
     "Critic",
     "@User",
   ]);
+  const [selectedSpeaker, setSelectedSpeaker] = useState<string | null>(null);
 
   return (
     <Box>
@@ -23,6 +24,7 @@ export const Transcripts = () => {
           variant="outlined"
           key={index.toString()}
           sx={{ textTransform: "none", display: "block", mb: 1 }}
+          onClick={() => setSelectedSpeaker(speaker)}
         >
           {speaker}
         </Button>
