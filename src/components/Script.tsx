@@ -1,6 +1,8 @@
 import { useCallback, useState } from "react";
 import { aura } from "@uiw/codemirror-theme-aura";
 import CodeMirror from "@uiw/react-codemirror";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 export const Script = () => {
   const [script, setScript] = useState(`# AGENT: InvestorReport		
@@ -139,12 +141,23 @@ Manager, DataAgent:
   }, []);
 
   return (
-    <CodeMirror
-      value={script}
-      height="86vh"
-      placeholder={"Your script here."}
-      onChange={onChange}
-      theme={aura}
-    />
+    <>
+      <CodeMirror
+        value={script}
+        height="79vh"
+        placeholder={"Your script here."}
+        onChange={onChange}
+        theme={aura}
+      />
+      <Box
+        sx={{
+          mt: 2,
+          display: "flex",
+          justifyContent: "flex-end",
+        }}
+      >
+        <Button variant="contained">Save</Button>
+      </Box>
+    </>
   );
 };
