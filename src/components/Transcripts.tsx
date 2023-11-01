@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { TranscriptsBreadCrumbs } from "./";
 import { cloneDeep } from "lodash";
 
 export const Transcripts = () => {
@@ -38,16 +39,22 @@ export const Transcripts = () => {
 
   return (
     <Box>
-      {speakers.map((speaker, index) => (
-        <Button
-          variant="outlined"
-          key={index.toString()}
-          sx={{ textTransform: "none", display: "block", mb: 1 }}
-          onClick={() => setSelectedSpeaker(speaker)}
-        >
-          {speaker}
-        </Button>
-      ))}
+      <TranscriptsBreadCrumbs
+        links={links}
+        handleBreadCrumbClick={handleBreadCrumbClick}
+      />
+      <Box sx={{ mt: 3 }}>
+        {speakers.map((speaker, index) => (
+          <Button
+            variant="outlined"
+            key={index.toString()}
+            sx={{ textTransform: "none", display: "block", mb: 1 }}
+            onClick={() => setSelectedSpeaker(speaker)}
+          >
+            {speaker}
+          </Button>
+        ))}
+      </Box>
     </Box>
   );
 };
