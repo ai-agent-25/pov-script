@@ -19,6 +19,13 @@ export const Transcripts = () => {
   const [selectedSpeaker, setSelectedSpeaker] = useState<string | null>(null);
   const [links, setLinks] = useState<string[]>(["Transcripts"]);
 
+  const handleBreadCrumbClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    event.preventDefault();
+    setSelectedSpeaker(null);
+  };
+
   useEffect(() => {
     if (selectedSpeaker) {
       const currentLinks = cloneDeep(links);
