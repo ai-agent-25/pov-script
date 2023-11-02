@@ -16,3 +16,8 @@ export type TranscriptsBreadCrumbsPropsType = {
     event: React.MouseEvent<HTMLAnchorElement, MouseEvent>
   ) => void;
 };
+
+export type TranscriptsType = {
+  speaker: string;
+  transcript: string;
+};
