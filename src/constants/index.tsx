@@ -1,0 +1,1 @@
+export { scriptData } from "./scriptData";
