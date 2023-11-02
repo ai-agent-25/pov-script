@@ -6,3 +6,4 @@ export { StepThrough } from "./StepThrough";
 export { TabBar } from "./TabBar";
 export { TabPanel } from "./TabPanel";
 export { Transcripts } from "./Transcripts";
+export { TranscriptsBreadCrumbs } from "./TranscriptsBreadCrumbs";
