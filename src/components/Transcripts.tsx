@@ -45,7 +45,7 @@ export const Transcripts = ({ roles }: TranscriptsPropsType) => {
         handleBreadCrumbClick={handleBreadCrumbClick}
       />
       <Box sx={{ mt: 3 }}>
-        {speakers.map((speaker, index) => (
+        {roles?.map((speaker, index) => (
           <Button
             variant="outlined"
             key={index.toString()}
