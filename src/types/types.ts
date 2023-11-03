@@ -17,6 +17,10 @@ export type TranscriptsBreadCrumbsPropsType = {
   ) => void;
 };
 
+export type TranscriptsPropsType = {
+  roles: string[] | null;
+};
+
 export type TranscriptsType = {
   speaker: string;
   transcript: string;
