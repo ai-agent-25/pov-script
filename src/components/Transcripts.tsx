@@ -7,18 +7,6 @@ import { SpeakerTranscript } from "./SpeakerTranscript";
 import { TranscriptsPropsType } from "../types/types";
 
 export const Transcripts = ({ roles }: TranscriptsPropsType) => {
-  const [speakers, setSpeakers] = useState<string[]>([
-    "Writer",
-    "Editor",
-    "IdeaGenerator",
-    "Researcher",
-    "PlotAdvisor",
-    "WorldBuilder",
-    "Formatter",
-    "TimelineManager",
-    "Critic",
-    "@User",
-  ]);
   const [selectedSpeaker, setSelectedSpeaker] = useState<string | null>(null);
   const [links, setLinks] = useState<string[]>(["Transcripts"]);
 
