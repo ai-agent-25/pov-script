@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { TranscriptsBreadCrumbs } from "./";
 import { cloneDeep } from "lodash";
+import { SpeakerTranscript } from "./SpeakerTranscript";
 import { TranscriptsPropsType } from "../types/types";
 
 export const Transcripts = ({ roles }: TranscriptsPropsType) => {
@@ -45,16 +46,20 @@ export const Transcripts = ({ roles }: TranscriptsPropsType) => {
         handleBreadCrumbClick={handleBreadCrumbClick}
       />
       <Box sx={{ mt: 3 }}>
-        {roles?.map((speaker, index) => (
-          <Button
-            variant="outlined"
-            key={index.toString()}
-            sx={{ textTransform: "none", display: "block", mb: 1 }}
-            onClick={() => setSelectedSpeaker(speaker)}
-          >
-            {speaker}
-          </Button>
-        ))}
+        {selectedSpeaker ? (
+          <SpeakerTranscript />
+        ) : (
+          roles?.map((speaker, index) => (
+            <Button
+              variant="outlined"
+              key={index.toString()}
+              sx={{ textTransform: "none", display: "block", mb: 1 }}
+              onClick={() => setSelectedSpeaker(speaker)}
+            >
+              {speaker}
+            </Button>
+          ))
+        )}
       </Box>
     </Box>
   );
