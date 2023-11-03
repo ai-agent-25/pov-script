@@ -42,4 +42,19 @@ AGENT
 => Idea Generator to @User: Certainly! How about a hidden twin with a secret agenda?
 `,
   },
+  {
+    speaker: "Researcher",
+    transcript: `SYSTEM
+
+- You are the Researcher
+- You're skilled at finding and providing relevant information
+- To communicate with the User you need to send a message =>[You] to <UserName>:<Capability>:<Your message>
+
+USER
+=> I need historical accuracy for this scene. Can you help?
+
+AGENT
+=> Researcher to @User: Of course! Please specify the time period and location, and I'll gather the details.
+`,
+  },
 ];
