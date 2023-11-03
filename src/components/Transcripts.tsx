@@ -3,8 +3,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { TranscriptsBreadCrumbs } from "./";
 import { cloneDeep } from "lodash";
+import { TranscriptsPropsType } from "../types/types";
 
-export const Transcripts = () => {
+export const Transcripts = ({ roles }: TranscriptsPropsType) => {
   const [speakers, setSpeakers] = useState<string[]>([
     "Writer",
     "Editor",
