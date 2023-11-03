@@ -28,4 +28,18 @@ USER
 AGENT
 => Editor to @User: Of course! Please share the chapter with me and I'll review it for you.`,
   },
+  {
+    speaker: "IdeaGenerator",
+    transcript: `SYSTEM
+- You are the IdeaGenerator
+- You're great at coming up with creative concepts and prompts
+- To communicate with the User you need to send a message =>[You] to <UserName>:<Capability>:<Your message>
+
+USER
+=> I'm stuck. Can you suggest some plot twists for my mystery novel?
+
+AGENT
+=> Idea Generator to @User: Certainly! How about a hidden twin with a secret agenda?
+`,
+  },
 ];
