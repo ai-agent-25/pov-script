@@ -24,6 +24,13 @@ export const UserChat = () => {
           fullWidth
           id="message"
           placeholder="Your message here ..."
+          sx={{
+            backgroundColor: theme.palette.action.disabledBackground,
+            display: "flex",
+            justifyContent: "center",
+            p: 0.7,
+            px: 1.5,
+          }}
           InputProps={{ disableUnderline: true }}
         />
       </Paper>
