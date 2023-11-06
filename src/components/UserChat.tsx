@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, KeyboardEventHandler } from "react";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -7,10 +7,19 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
 import { theme } from "../utils";
+import { cloneDeep } from "lodash";
 
 export const UserChat = () => {
   const [message, setMessage] = useState<string>("");
   const [messages, setMessages] = useState<string[]>([]);
+  const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
+    if (event.key === "Enter") {
+      const currentMessages = cloneDeep(messages);
+      currentMessages.push(`@User to Manager: ${message}`);
+      setMessages(currentMessages);
+      setMessage("");
+    }
+  };
 
   return (
     <Box
@@ -31,6 +40,7 @@ export const UserChat = () => {
             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
               setMessage(event.target.value);
             }}
+            onKeyDown={handleKeyDown}
             id="message"
             placeholder="Your message here ..."
             sx={{
