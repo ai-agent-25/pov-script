@@ -9,7 +9,8 @@ import SendIcon from "@mui/icons-material/Send";
 import { theme } from "../utils";
 
 export const UserChat = () => {
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState<string>("");
+  const [messages, setMessages] = useState<string[]>([]);
 
   return (
     <Box
