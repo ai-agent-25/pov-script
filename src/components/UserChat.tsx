@@ -30,7 +30,18 @@ export const UserChat = () => {
         height: "100%",
       }}
     >
-      <Typography>@User Chat</Typography>
+      <Box>
+        <Typography sx={{ mb: 3 }}>@User Chat</Typography>
+        {messages.map((message, index) => (
+          <Typography
+            variant="body2"
+            sx={{ color: "text.secondary", fontSize: "0.9rem", mb: 1.5 }}
+            key={index.toString()}
+          >
+            {message}
+          </Typography>
+        ))}
+      </Box>
       <Paper sx={{ m: -3, p: 2.75 }}>
         <Stack direction="row" spacing={1.5}>
           <TextField
