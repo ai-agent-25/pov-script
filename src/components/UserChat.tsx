@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -8,6 +9,8 @@ import SendIcon from "@mui/icons-material/Send";
 import { theme } from "../utils";
 
 export const UserChat = () => {
+  const [message, setMessage] = useState("");
+
   return (
     <Box
       sx={{
@@ -23,6 +26,10 @@ export const UserChat = () => {
           <TextField
             variant="standard"
             fullWidth
+            value={message}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+              setMessage(event.target.value);
+            }}
             id="message"
             placeholder="Your message here ..."
             sx={{
