@@ -23,6 +23,7 @@ export const UserChat = () => {
           variant="standard"
           fullWidth
           id="message"
+          placeholder="Your message here ..."
           InputProps={{ disableUnderline: true }}
         />
       </Paper>
