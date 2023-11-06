@@ -19,31 +19,33 @@ export const UserChat = () => {
     >
       <Typography>@User Chat</Typography>
       <Paper sx={{ m: -3, p: 2.75 }}>
-        <TextField
-          variant="standard"
-          fullWidth
-          id="message"
-          placeholder="Your message here ..."
-          sx={{
-            backgroundColor: theme.palette.action.disabledBackground,
-            display: "flex",
-            justifyContent: "center",
-            p: 0.7,
-            px: 1.5,
-          }}
-          InputProps={{ disableUnderline: true }}
-        />
-        <Button
-          variant="contained"
-          sx={{
-            minHeight: "unset",
-            minWidth: "unset",
-            aspectRatio: "1/1",
-            p: 1.5,
-          }}
-        >
-          <SendIcon sx={{ fontSize: "1.25rem" }} />
-        </Button>
+        <Stack direction="row" spacing={1.5}>
+          <TextField
+            variant="standard"
+            fullWidth
+            id="message"
+            placeholder="Your message here ..."
+            sx={{
+              backgroundColor: theme.palette.action.disabledBackground,
+              display: "flex",
+              justifyContent: "center",
+              p: 0.7,
+              px: 1.5,
+            }}
+            InputProps={{ disableUnderline: true }}
+          />
+          <Button
+            variant="contained"
+            sx={{
+              minHeight: "unset",
+              minWidth: "unset",
+              aspectRatio: "1/1",
+              p: 1.5,
+            }}
+          >
+            <SendIcon sx={{ fontSize: "1.25rem" }} />
+          </Button>
+        </Stack>
       </Paper>
     </Box>
   );
