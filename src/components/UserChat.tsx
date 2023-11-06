@@ -33,6 +33,17 @@ export const UserChat = () => {
           }}
           InputProps={{ disableUnderline: true }}
         />
+        <Button
+          variant="contained"
+          sx={{
+            minHeight: "unset",
+            minWidth: "unset",
+            aspectRatio: "1/1",
+            p: 1.5,
+          }}
+        >
+          <SendIcon sx={{ fontSize: "1.25rem" }} />
+        </Button>
       </Paper>
     </Box>
   );
