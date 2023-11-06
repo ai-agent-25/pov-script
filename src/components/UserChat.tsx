@@ -15,7 +15,13 @@ export const UserChat = () => {
     >
       <Typography>@User Chat</Typography>
       <Paper sx={{ m: -3, p: 3 }}>
-        <TextField fullWidth id="message" variant="filled" size="small" />
+        <TextField
+          fullWidth
+          id="message"
+          variant="filled"
+          size="small"
+          InputProps={{ disableUnderline: true }}
+        />
       </Paper>
     </Box>
   );
