@@ -82,6 +82,7 @@ export const UserChat = () => {
               aspectRatio: "1/1",
               p: 1.5,
             }}
+            onClick={sendMessage}
           >
             <SendIcon sx={{ fontSize: "1.25rem" }} />
           </Button>
