@@ -30,7 +30,14 @@ export const UserChat = () => {
         height: "100%",
       }}
     >
-      <Box>
+      <Box
+        sx={{
+          flex: 1,
+          overflowY: "auto",
+          maxHeight: "74vh",
+          pr: 2,
+        }}
+      >
         <Typography sx={{ mb: 3 }}>@User Chat</Typography>
         {messages.map((message, index) => (
           <Typography
