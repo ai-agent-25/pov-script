@@ -14,11 +14,15 @@ export const UserChat = () => {
   const [messages, setMessages] = useState<string[]>([]);
   const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
     if (event.key === "Enter") {
-      const currentMessages = cloneDeep(messages);
-      currentMessages.push(`@User to Manager: ${message}`);
-      setMessages(currentMessages);
-      setMessage("");
+      sendMessage();
     }
+  };
+
+  const sendMessage = () => {
+    const currentMessages = cloneDeep(messages);
+    currentMessages.push(`@User to Manager: ${message}`);
+    setMessages(currentMessages);
+    setMessage("");
   };
 
   return (
