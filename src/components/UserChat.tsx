@@ -19,10 +19,12 @@ export const UserChat = () => {
   };
 
   const sendMessage = () => {
-    const currentMessages = cloneDeep(messages);
-    currentMessages.push(`@User to Manager: ${message}`);
-    setMessages(currentMessages);
-    setMessage("");
+    if (message.trim() !== "") {
+      const currentMessages = cloneDeep(messages);
+      currentMessages.push(`@User to Manager: ${message}`);
+      setMessages(currentMessages);
+      setMessage("");
+    }
   };
 
   return (
