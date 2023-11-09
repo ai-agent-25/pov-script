@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rimraf ./dist && npx tsc",
     "start": "node ./dist/index.js",
+    "predev": "rimraf ./dist && npx tsc",
     "dev": "concurrently \"tsc -w\" \"nodemon ./dist/index.js\""
   },
   "author": "Priya Aswani",
