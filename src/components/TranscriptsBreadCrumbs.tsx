@@ -11,9 +11,14 @@ export const TranscriptsBreadCrumbs = ({
 }: TranscriptsBreadCrumbsPropsType) => {
   const breadcrumbs =
     links.length === 1
-      ? [<Typography color="text.primary">{links[0]}</Typography>]
+      ? [
+          <Typography color="text.primary" key="1">
+            {links[0]}
+          </Typography>,
+        ]
       : [
           <Link
+            key="1"
             underline="hover"
             color="inherit"
             href="/"
@@ -21,7 +26,7 @@ export const TranscriptsBreadCrumbs = ({
           >
             {links[0]}
           </Link>,
-          <Chip label={links[1]} color="primary" />,
+          <Chip key="2" label={links[1]} color="primary" />,
         ];
 
   return (
