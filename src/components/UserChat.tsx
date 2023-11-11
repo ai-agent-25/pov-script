@@ -1,4 +1,4 @@
-import { useState, KeyboardEventHandler } from "react";
+import { useState, useEffect, KeyboardEventHandler } from "react";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -8,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
 import { theme } from "../utils";
 import { cloneDeep } from "lodash";
+import { createMessage } from "../services/Api";
 import { MessagesType } from "../types/types";
 
 export const UserChat = () => {
@@ -38,6 +39,23 @@ export const UserChat = () => {
       setMessage("");
     }
   };
+
+  useEffect(() => {
+    let currentMessages = cloneDeep(messages);
+    if (messages.length > 1 && messages[messages.length - 1]?.role === "user") {
+      setLoading(true);
+      createMessage(currentMessages)
+        .then((result) => {
+          currentMessages.push(result);
+          setMessages(currentMessages);
+          setLoading(false);
+        })
+        .catch((error) => {
+          setLoading(false);
+          console.log(error);
+        });
+    }
+  }, [messages]);
 
   return (
     <Box
