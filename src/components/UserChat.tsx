@@ -8,10 +8,12 @@ import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
 import { theme } from "../utils";
 import { cloneDeep } from "lodash";
+import { MessagesType } from "../types/types";
 
 export const UserChat = () => {
   const [message, setMessage] = useState<string>("");
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<MessagesType[]>([]);
+
   const handleKeyDown: KeyboardEventHandler<HTMLInputElement> = (event) => {
     if (event.key === "Enter") {
       sendMessage();
@@ -55,7 +57,7 @@ export const UserChat = () => {
           </Typography>
         ))}
       </Box>
-      <Paper sx={{ m: -3, p: 2.75 }}>
+      <Paper sx={{ m: -3, p: 2.75, borderRadius: "5px" }}>
         <Stack direction="row" spacing={1.5}>
           <TextField
             variant="standard"
