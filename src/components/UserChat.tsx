@@ -3,6 +3,7 @@ import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import CircularProgress from "@mui/material/CircularProgress";
 import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
@@ -86,6 +87,23 @@ export const UserChat = () => {
                 {message.content}
               </Typography>
             )
+        )}
+        {loading && (
+          <Box sx={{ display: "flex" }}>
+            <Typography
+              variant="body2"
+              sx={{
+                color: "text.secondary",
+                fontSize: "0.9rem",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              Manager to @User:
+              <CircularProgress sx={{ ml: 1 }} size={22} thickness={7} />
+            </Typography>
+          </Box>
         )}
       </Box>
       <Paper sx={{ m: -3, p: 2.75, borderRadius: "5px" }}>
