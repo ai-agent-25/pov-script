@@ -3,6 +3,11 @@ export type MessagesType = {
   content: string;
 };
 
+export type ScriptPropsType = {
+  script: string;
+  setScript: React.Dispatch<React.SetStateAction<string>>;
+};
+
 export type TabPanelPropsType = {
   children?: React.ReactNode;
   dir?: string;
