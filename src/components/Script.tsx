@@ -19,7 +19,7 @@ export const Script = ({ script, setScript }: ScriptPropsType) => {
     <>
       <CodeMirror
         value={currentScript}
-        height="79vh"
+        height="77vh"
         placeholder={"Your script here."}
         onChange={onChange}
         theme={aura}
