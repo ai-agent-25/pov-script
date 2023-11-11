@@ -57,15 +57,18 @@ export const UserChat = () => {
         }}
       >
         <Typography sx={{ mb: 3 }}>@User Chat</Typography>
-        {messages.map((message, index) => (
-          <Typography
-            variant="body2"
-            sx={{ color: "text.secondary", fontSize: "0.9rem", mb: 1.5 }}
-            key={index.toString()}
-          >
-            {message}
-          </Typography>
-        ))}
+        {messages.map(
+          (message, index) =>
+            index > 0 && (
+              <Typography
+                variant="body2"
+                sx={{ color: "text.secondary", fontSize: "0.9rem", mb: 1.5 }}
+                key={index.toString()}
+              >
+                {message.content}
+              </Typography>
+            )
+        )}
       </Box>
       <Paper sx={{ m: -3, p: 2.75, borderRadius: "5px" }}>
         <Stack direction="row" spacing={1.5}>
