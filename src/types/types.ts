@@ -1,3 +1,8 @@
+export type MessagesType = {
+  role: string;
+  content: string;
+};
+
 export type TabPanelPropsType = {
   children?: React.ReactNode;
   dir?: string;
