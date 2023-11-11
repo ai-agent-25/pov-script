@@ -129,7 +129,7 @@ export const UserChat = () => {
           />
           <Button
             variant="contained"
-            disabled={message.trim() === ""}
+            disabled={loading || message.trim() === ""}
             sx={{
               minHeight: "unset",
               minWidth: "unset",
