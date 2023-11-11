@@ -124,6 +124,7 @@ export const UserChat = () => {
               justifyContent: "center",
               p: 0.7,
               px: 1.5,
+              borderRadius: "5px",
             }}
             InputProps={{ disableUnderline: true }}
           />
