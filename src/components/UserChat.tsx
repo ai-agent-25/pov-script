@@ -22,8 +22,11 @@ export const UserChat = () => {
 
   const sendMessage = () => {
     if (message.trim() !== "") {
-      const currentMessages = cloneDeep(messages);
-      currentMessages.push(`@User to Manager: ${message}`);
+      let currentMessages = cloneDeep(messages);
+      currentMessages.push({
+        role: "user",
+        content: `@User to Manager: ${message}`,
+      });
       setMessages(currentMessages);
       setMessage("");
     }
