@@ -3,30 +3,8 @@ import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
-import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Script } from "./";
-import { TabPanelPropsType } from "../types/types";
-
-function TabPanel(props: TabPanelPropsType) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`full-width-tabpanel-${index}`}
-      aria-labelledby={`full-width-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
+import { scriptData } from "../constants";
 
 function a11yProps(index: number, value: number) {
   return {
@@ -55,14 +33,7 @@ function a11yProps(index: number, value: number) {
 export const TabBar = () => {
   const theme = useTheme();
   const [value, setValue] = useState(0);
-  const [tabs, setTabs] = useState([
-    { tab: "@User Chat Window", component: <></> },
-    { tab: "@FinUser Chat Window", component: <></> },
-    { tab: "Chat History", component: <></> },
-    { tab: "Transcripts", component: <></> },
-    { tab: "Script", component: <Script /> },
-    { tab: "Step Through", component: <></> },
-  ]);
+  const [script, setScript] = useState<string>(scriptData);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
