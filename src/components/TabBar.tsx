@@ -105,6 +105,14 @@ export const TabBar = () => {
     setTabs(newTabs);
   }, [script]);
 
+  useEffect(() => {
+    const newTabs = cloneDeep(tabs);
+    newTabs[0].component = (
+      <UserChat messages={messages} setMessages={setMessages} />
+    );
+    setTabs(newTabs);
+  }, [messages]);
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
