@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
@@ -15,6 +15,7 @@ import {
 } from ".";
 import { TabType } from "../types/types";
 import { scriptData } from "../constants";
+import { cloneDeep } from "lodash";
 
 function a11yProps(index: number, value: number) {
   return {
@@ -56,6 +57,12 @@ export const TabBar = () => {
     },
     { tab: "Step Through", component: <StepThrough /> },
   ]);
+
+  useEffect(() => {
+    const newTabs = cloneDeep(tabs);
+    newTabs[3].component = <Transcripts roles={roles} />;
+    setTabs(newTabs);
+  }, [roles]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
