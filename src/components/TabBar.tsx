@@ -15,7 +15,7 @@ import {
 } from ".";
 import { TabType } from "../types/types";
 import { scriptData } from "../constants";
-import { cloneDeep } from "lodash";
+import { cloneDeep, filter, split } from "lodash";
 
 function a11yProps(index: number, value: number) {
   return {
@@ -57,6 +57,27 @@ export const TabBar = () => {
     },
     { tab: "Step Through", component: <StepThrough /> },
   ]);
+
+  useEffect(() => {
+    let splitOnRole = script.split("ROLE: ");
+    splitOnRole.splice(0, 1);
+
+    let rolesFromScript = new Map();
+    splitOnRole.map((item) => {
+      let role = item.split("\n")[0];
+      role = role.split(" ")[0];
+      let splitOnAction = item.split(/-(?!>)/);
+      splitOnAction.splice(0, 1);
+      splitOnAction = splitOnAction.map((actionItem) =>
+        actionItem.replace(/^\s*|\s*$/g, "").replace(/\n[\s\S]*$/, "")
+      );
+      if (!rolesFromScript.has(role)) {
+        rolesFromScript.set(role, splitOnAction);
+      }
+    });
+    let newRoles: string[] = Array.from(rolesFromScript.keys()) as string[];
+    setRoles(newRoles);
+  }, [script]);
 
   useEffect(() => {
     const newTabs = cloneDeep(tabs);
