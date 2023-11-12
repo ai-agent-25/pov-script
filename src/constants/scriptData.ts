@@ -111,17 +111,17 @@ ORCHESTRATION_LOOP
 Manager, User, FinUser
 
 # CONTEXT 
-Orchestrator
+Orchestrator:
 - You are Orchestrator
 Manager:
 - You are Manager
 @User:
 - You are @User
-@FinUser
+@FinUser:
 - You are @FinUser
-PresentationExpert
+PresentationExpert:
 - You are PresentationExpert
-Critic
+Critic:
 - You are Critic
 
 Manager, Orchestor, Critic, @User, @FinUser, PresentationExpert
