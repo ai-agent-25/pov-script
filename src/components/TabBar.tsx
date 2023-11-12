@@ -4,6 +4,16 @@ import AppBar from "@mui/material/AppBar";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import {
+  ChatHistory,
+  FinUserChat,
+  Script,
+  StepThrough,
+  TabPanel,
+  Transcripts,
+  UserChat,
+} from ".";
+import { TabType } from "../types/types";
 import { scriptData } from "../constants";
 
 function a11yProps(index: number, value: number) {
@@ -35,6 +45,17 @@ export const TabBar = () => {
   const [value, setValue] = useState(0);
   const [script, setScript] = useState<string>(scriptData);
   const [roles, setRoles] = useState<string[] | null>(null);
+  const [tabs, setTabs] = useState<TabType[]>([
+    { tab: "@User Chat", component: <UserChat /> },
+    { tab: "@FinUser Chat", component: <FinUserChat /> },
+    { tab: "Chat History", component: <ChatHistory /> },
+    { tab: "Transcripts", component: <Transcripts roles={roles} /> },
+    {
+      tab: "Script",
+      component: <Script script={script} setScript={setScript} />,
+    },
+    { tab: "Step Through", component: <StepThrough /> },
+  ]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
