@@ -1,131 +1,131 @@
-export const scriptData = `# AGENT: InvestorReport		
+export const scriptData = `# Task: InvestorReport
+STEP: ConfirmUserIntention
+- Confirm with the User whether they want to run the user report and whether they have any special instructions.
+\tDIALOG  
+\t\tROLE: Manager  
+\t\t\tACTION
+\t\t\t- Tell the user that you can generate the investor report if they don't mention what they want and confirm that is what they want to do, taking into account any feedback you receive from the Orchestrator and critic
+\t\t\t- If the user asked you to create the investor report first confirm your understanding with the user and tell Orchestrator you have succeeded and give planner the information you gathered then call ->SUCCESS
+\t\t\t- If it becomes clear that the user is not coorporating or there is another reason why progress is stalled, send a Message to Orchestrator explaining your failure and call ->FAILURE
+
+\t\t\tTOOLS 
+\t\t\t- Slack
+
+\t\tROLE: @User
+\t\t\tACTION
+\t\t\t- Send a message to Manager responding in the typical way to the Manager's message
+
+\t\tROLE: Critic
+\t\t\tACTION
+\t\t\t- Send a Message to Manager giving them advice about how they are conducting the conversation
+
+STEP: GetFinInformation
+- Then ask FinUser for the financial information and confirm with FinUser that details provided are sufficient
+\tDIALOG:
+\t\tROLE: Manager
+\t\t\tACTION
+\t\t\t- Ask FinUser to provide the necessary financial information to you for the investor report.
+\t\t\t- If the user asked you to create the investor report first confirm your understanding with the user and tell Orchestrator you have succeeded and give planner the information you gathered then call ->SUCCESS
+\t\t\t- If the FinUser also asked you to send out the investor report to the investors, make a note of that
+\t\t\t- If it becomes clear that the FinUser is not coorporating or there is another reason why progress is stalled, send a Message to Orchestrator explaining your failure and call ->FAILURE
+
+\t\t\tTOOLS
+\t\t\t- Slack
+
+\t\tROLE: @FinUser
+\t\t\tACTION
+\t\t\t- You are FinUser
+\t\t\t- Send a message to Manager responding in the typical way to the Manager's message
+
+\t\tROLE: Critic
+\t\t\tACTION
+\t\t\t- Send a Message to Manager giving them advice about how they are conducting the conversation
 
 
-REPEAT: 6
-  DIALOG
-    ROLE: Manager
-      ACTION
-      - Respond appropriately to the user
-      - Tell the user that you can generate the investor report if they don't mention what they want
-      - If the user asked you to create the investor report first confirm your understanding with the user and if they confirm call ->DIALOG("CreateReport")
-      - If the user also asked you to send out the investor report to the investors, make a note of that
-      - If you need to abandon the process, tell the user you are abandoning and call ->ENDAGENT
+STEP: WriteReport
+- Then write a report to the investors based on the information provided by FinUser
+	REPEAT: 3
+\t\tDIALOG
+\t\t\tROLE: Manager
+\t\t\t\tACTION
+\t\t\t\t- Write an investor report that is 250 words based on the information given to you by FinUser
+\t\t\t\t- Analyze the finmodel to get additional insights
+\t\t\t\t- draw a few relevant charts
 
-    ROLE: @User
-    Timeout: 20 seconds	
-      ACTION
-      - Respond in the typical way to the Manager's message
+\t\t\tTOOLS   
+\t\t\t-> ChartingTool
 
+\t\t\tFILES  
+\t\t\t-> finmodel.xls 
 
-DIALOGIF: CreateReport [[BREAKPOINT]]
-  DIALOG
-    ROLE: Manager
-      ACTION
-      - Send a message to DataAgent to get the data from @FinUser
-      - call ->DIALOG("GetData")
+\t\t\tROLE: PresentationExpert
+\t\t\t\tACTION
+\t\t\t\t- Give Manager advice on how the report could be improved
 
 
-  REPEAT: 20
-    DIALOG 	
-      ROLE: Manager
-        ACTIONIF
-          INSTRUCT 
-            - Consider the StatusData's and StatusReport's feedback and then select one of the following
-
-            IF: You need to get additional data for the report
-            - Tell DataAgent what you need
-            - Call ->DIALOG("GetData")
-  
-            IF: You have a sufficient idea and want to write the report or change something about the report
-            - Tell ReportWriter what you need
-            - Call ->DIALOG("WriteReport")
-
-DIALOGIF: GetData
-  REPEAT: 10
-      DIALOG
-        ROLE: DataAgent
-          CONTEXT
-          - Your role is to ask @FinUser for the Data and follow up on any missing data as per the Manager's instructions
-          - If @FinUser has provided all the relevant data call ->ENDREPEAT
-
-          ACTION
-          - Follow the Manager's instructions
-
-        ROLE: @FinUser
-          ACTION
-         - Give fictious but plausible data for the SAAS company quarterly results and say typical things that might be said in this situation.
-
-        ROLE: Thinker // Just an observer,
-          OBSERVE
-
-        ROLE: StatusData
-          OBSERVE
-
-      DIALOG  // Still in the repeat loop
-        ROLE: Thinker
-          ACTION
-          - Consider what @FinUser provided and say if any basic data that investors might expect to see is missing
-
-        ROLE: DataAgent  // just an observer
-
-        ROLE: StatusData
-
-    DIALOG 
-      ROLE: DataAgent
-        ACTIONCUMENT: InvestorData
-        - State all the data that you collected so far
-
-      ROLE: StatusData
-        ACTION
-        - Report on the status of the data gathering process to the Manager
-
-DIALOG: WriteReport
-  DIALOG
-    ROLE: ReportWriter
-      ACTION
-      - Analyse the following document
-      <Document: InvestorData> 
-      -If you have issues because the data is not what was expected, state your issues to the the StatusReport.
-      -If the data is within expectations tell the StatusReport
-
-      ACTIONCUMENT: InvestorEmail
-      -Write a short email report for investors based on that information starting with "Dear Investors"
-
-    ROLE: StatusReport
-      ACTION
-      - Report on the status of the report writing process to the Manager
+STEP: GetInitialUserApproval
+- Then iterate with the User on the report until the User confirms it’s good enough
+	DIALOG
+\t\tROLE: Manager
+\t\t\tACTION
+\t\t\t- Iterate with the User until they are happy with the report
+\t\t\t- If the user confirms they are happy to send the report out and Message the Orchestrator you have succeeded and then call ->SUCCESS
+\t\t\t- If it becomes clear that the user is not coorporating or there is another reason why progress is stalled, send a Message to Orchestrator explaining your failure and call ->FAILURE
+\t\tROLE: @User
+\t\t\tACTION
+\t\t\t- Send a message to Manager responding in the typical way to the Manager's message
+\t\tROLE: Critic
+\t\t\tACTION
+\t\t\t- Send a Message to Manager giving them advice about how they are conducting the conversation
 
 
-# Instruction: UserCommunication
-- To communicate with the User you need to send a message =>[You] to <UserName>:<Your message>
+STEP: SendReport
+- Then send out the report
+\tDIALOG
+\t\tROLE: Manager
+\t\t\tACTION
+\t\t\t- Send the report to the investors
 
-# Instruction: SpeakerCommunication
-- To communicate with Speakers you need to send a message =>[You] to <Speaker>:<Your message>
+\t\t\tTOOLS
+\t\t\t- Email
 
-# PERSPECTIVE
+ORCHESTRATION_LOOP 
+\tDIALOG
+\t\tROLE: Orchestrator
+\t\tSYSTEM 
+\t\t- Your goal is to create and send out the investor report by completing the following steps in order. 
+\t\tACTION 
+\t\t- Based on the conversation so far, pick the next step that needs to be run to best advance the conversation by telling SYSTEM to run ->NEXT_STEP([StepName])
+\t\t- Explain your your decision on the next step to the Manager
+\t\t- Go back to previous steps if necessary
+\t\t- When all steps have been completed successfully call ->END_TASK("Success")
+
+\t\tEVENTS
+\t\t- Email
+\t\t- Slack
+
+\t\tROLE: Manager
+
+
+# EXTERNAL_AUTHORIZED
+Manager, User, FinUser
+
+# CONTEXT 
+Orchestrator
+- You are Orchestrator
 Manager:
 - You are Manager
-DataAgent:
-- You are DataAgent
-Thinker:
-- You are Thinker
-Assistant:
-- You are Assistant
-ReportWriter:
-- You are ReportWriter
-StatusData:
-- You are StatusData
-StatusReport:
-- You are StatusReport
-Critic:
-- You are Critic
 @User:
 - You are @User
-@FinUser:
+@FinUser
 - You are @FinUser
+PresentationExpert
+- You are PresentationExpert
+Critic
+- You are Critic
 
-Manager, DataAgent, Thinker, Assistant, ReportWriter, Critic, @User, @FinUser, StatusReport, StatusData:
-<Instruction: SpeakerCommunication>
-Manager, DataAgent:
-<Instruction: UserCommunication>
+Manager, Orchestor, Critic, @User, @FinUser, PresentationExpert
+- To communicate with others you need to send a message using the following format =>[You] to <Receiver>:<Your message>
+- If it is not specified which Message Type to use, use GROUP
+- If you are instructed to call a function in the format ->FunctionName, do so using the following format: [You] to SYSTEM: ->FunctionName(Parameters)
 `;
