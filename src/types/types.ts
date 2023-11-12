@@ -35,3 +35,8 @@ export type TranscriptsType = {
   speaker: string;
   transcript: string;
 };
+
+export type UserChatPropsType = {
+  messages: MessagesType[];
+  setMessages: React.Dispatch<React.SetStateAction<MessagesType[]>>;
+};
