@@ -75,7 +75,15 @@ export const TabBar = () => {
   };
 
   return (
-    <Box sx={{ bgcolor: "background.paper", width: "100%" }}>
+    <Box
+      sx={{
+        bgcolor: "background.paper",
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <AppBar position="static">
         <Tabs
           value={value}
