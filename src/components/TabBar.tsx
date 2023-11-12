@@ -64,6 +64,12 @@ export const TabBar = () => {
     setTabs(newTabs);
   }, [roles]);
 
+  useEffect(() => {
+    const newTabs = cloneDeep(tabs);
+    newTabs[4].component = <Script script={script} setScript={setScript} />;
+    setTabs(newTabs);
+  }, [script]);
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
