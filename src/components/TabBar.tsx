@@ -34,6 +34,7 @@ export const TabBar = () => {
   const theme = useTheme();
   const [value, setValue] = useState(0);
   const [script, setScript] = useState<string>(scriptData);
+  const [roles, setRoles] = useState<string[] | null>(null);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
