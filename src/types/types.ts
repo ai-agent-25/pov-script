@@ -37,7 +37,7 @@ export type TranscriptsBreadCrumbsPropsType = {
 };
 
 export type TranscriptsPropsType = {
-  roles: string[] | null;
+  rolesAndTranscripts: RolesAndTranscriptsType[];
 };
 
 export type TranscriptsType = {
