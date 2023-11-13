@@ -4,6 +4,7 @@ import CodeMirror from "@uiw/react-codemirror";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { ScriptPropsType } from "../types/types";
+import { EditorView } from "@codemirror/view";
 
 export const Script = ({ script, setScript }: ScriptPropsType) => {
   const [currentScript, setCurrentScript] = useState(script);
@@ -18,11 +19,17 @@ export const Script = ({ script, setScript }: ScriptPropsType) => {
   return (
     <>
       <CodeMirror
+        extensions={[EditorView.lineWrapping]}
         value={currentScript}
         height="77vh"
         placeholder={"Your script here."}
         onChange={onChange}
         theme={aura}
+        style={{
+          whiteSpace: "pre-wrap",
+          wordBreak: "normal",
+          wordWrap: "break-word",
+        }}
       />
       <Box
         sx={{
