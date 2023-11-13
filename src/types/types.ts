@@ -13,6 +13,10 @@ export type ScriptPropsType = {
   setScript: React.Dispatch<React.SetStateAction<string>>;
 };
 
+export type SpeakerTranscriptPropsType = {
+  script: string;
+};
+
 export type TabPanelPropsType = {
   children?: React.ReactNode;
   dir?: string;
