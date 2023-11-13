@@ -102,6 +102,9 @@ export const TabBar = () => {
       ...item,
       transcript: "SYSTEM:\n" + item.transcript + "\n" + commonTranscript,
     }));
+
+    console.log(currentRolesAndTranscripts);
+    setRolesAndTranscripts(currentRolesAndTranscripts);
   }, [script]);
 
   useEffect(() => {
