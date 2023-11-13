@@ -76,6 +76,8 @@ export const TabBar = () => {
   useEffect(() => {
     let splitOnContext = script.split("# CONTEXT")[1];
     console.log(splitOnContext);
+    let splitOnRoles = splitOnContext.split("\n");
+    console.log(splitOnRoles);
   }, [script]);
 
   useEffect(() => {
