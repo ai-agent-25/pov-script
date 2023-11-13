@@ -13,7 +13,7 @@ import {
   Transcripts,
   UserChat,
 } from ".";
-import { MessagesType, TabType } from "../types/types";
+import { MessagesType, RolesAndTranscriptsType, TabType } from "../types/types";
 import { scriptData } from "../constants";
 import { cloneDeep, filter, split } from "lodash";
 
@@ -45,7 +45,9 @@ export const TabBar = () => {
   const theme = useTheme();
   const [value, setValue] = useState(0);
   const [script, setScript] = useState<string>(scriptData);
-  const [roles, setRoles] = useState<string[] | null>(null);
+  const [rolesAndTranscripts, setRolesAndTranscripts] = useState<
+    RolesAndTranscriptsType[]
+  >([]);
   const [messages, setMessages] = useState<MessagesType[]>([
     {
       role: "system",
