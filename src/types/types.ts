@@ -3,6 +3,11 @@ export type MessagesType = {
   content: string;
 };
 
+export type RolesAndTranscriptsType = {
+  role: string;
+  transcript: string;
+};
+
 export type ScriptPropsType = {
   script: string;
   setScript: React.Dispatch<React.SetStateAction<string>>;
