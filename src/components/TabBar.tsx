@@ -78,6 +78,15 @@ export const TabBar = () => {
     console.log(splitOnContext);
     let splitOnRoles = splitOnContext.split("\n");
     console.log(splitOnRoles);
+    let currentRolesAndTranscripts = [];
+    for (let index = 1; index < splitOnRoles.length - 1; index += 2) {
+      if (splitOnRoles[index + 1].indexOf("You are") !== -1) {
+        currentRolesAndTranscripts.push({
+          role: splitOnRoles[index].slice(0, -1),
+          transcript: splitOnRoles[index + 1],
+        });
+      }
+    }
   }, [script]);
 
   useEffect(() => {
