@@ -100,9 +100,11 @@ export const TabBar = () => {
 
   useEffect(() => {
     const newTabs = cloneDeep(tabs);
-    newTabs[3].component = <Transcripts roles={roles} />;
+    newTabs[3].component = (
+      <Transcripts rolesAndTranscripts={rolesAndTranscripts} />
+    );
     setTabs(newTabs);
-  }, [roles]);
+  }, [rolesAndTranscripts]);
 
   useEffect(() => {
     const newTabs = cloneDeep(tabs);
