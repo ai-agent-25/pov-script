@@ -74,28 +74,8 @@ export const TabBar = () => {
   ]);
 
   useEffect(() => {
-    let splitOnRole = script.split("ROLE: ");
-    splitOnRole.splice(0, 1);
-    console.log(splitOnRole);
-
-    let rolesFromScript = new Map();
-    splitOnRole.map((item) => {
-      let role = item.split("\n")[0];
-      role = role.split(" ")[0];
-      let splitOnAction = item.split(/-(?!>)/);
-      splitOnAction.splice(0, 1);
-      console.log(splitOnAction);
-      splitOnAction = splitOnAction.map((actionItem) =>
-        actionItem.replace(/^\s*|\s*$/g, "").replace(/\n[\s\S]*$/, "")
-      );
-      // console.log(role, splitOnAction);
-      if (!rolesFromScript.has(role)) {
-        rolesFromScript.set(role, splitOnAction);
-      }
-    });
-    console.log(rolesFromScript);
-    let newRoles: string[] = Array.from(rolesFromScript.keys()) as string[];
-    setRoles(newRoles);
+    let splitOnContext = script.split("# CONTEXT")[1];
+    console.log(splitOnContext);
   }, [script]);
 
   useEffect(() => {
