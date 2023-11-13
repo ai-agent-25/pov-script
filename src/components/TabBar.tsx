@@ -15,7 +15,7 @@ import {
 } from ".";
 import { MessagesType, RolesAndTranscriptsType, TabType } from "../types/types";
 import { scriptData } from "../constants";
-import { cloneDeep, filter, split } from "lodash";
+import { cloneDeep } from "lodash";
 
 function a11yProps(index: number, value: number) {
   return {
@@ -62,7 +62,10 @@ export const TabBar = () => {
     },
     { tab: "@FinUser Chat", component: <FinUserChat /> },
     { tab: "Chat History", component: <ChatHistory /> },
-    { tab: "Transcripts", component: <Transcripts roles={roles} /> },
+    {
+      tab: "Transcripts",
+      component: <Transcripts rolesAndTranscripts={rolesAndTranscripts} />,
+    },
     {
       tab: "Script",
       component: <Script script={script} setScript={setScript} />,
