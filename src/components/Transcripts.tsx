@@ -38,14 +38,14 @@ export const Transcripts = ({ rolesAndTranscripts }: TranscriptsPropsType) => {
         {selectedSpeaker ? (
           <SpeakerTranscript script={selectedSpeaker?.transcript} />
         ) : (
-          roles?.map((speaker, index) => (
+          rolesAndTranscripts?.map((roleAndTranscript, index) => (
             <Button
               variant="outlined"
               key={index.toString()}
               sx={{ textTransform: "none", display: "block", mb: 1 }}
-              onClick={() => setSelectedSpeaker(speaker)}
+              onClick={() => setSelectedSpeaker(roleAndTranscript)}
             >
-              {speaker}
+              {roleAndTranscript.role}
             </Button>
           ))
         )}
