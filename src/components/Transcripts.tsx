@@ -4,9 +4,9 @@ import Button from "@mui/material/Button";
 import { TranscriptsBreadCrumbs } from "./";
 import { cloneDeep } from "lodash";
 import { SpeakerTranscript } from "./SpeakerTranscript";
-import { TranscriptsPropsType } from "../types/types";
+import { RolesAndTranscriptsType, TranscriptsPropsType } from "../types/types";
 
-export const Transcripts = ({ roles }: TranscriptsPropsType) => {
+export const Transcripts = ({ rolesAndTranscripts }: TranscriptsPropsType) => {
   const [selectedSpeaker, setSelectedSpeaker] = useState<string | null>(null);
   const [links, setLinks] = useState<string[]>(["Transcripts"]);
 
