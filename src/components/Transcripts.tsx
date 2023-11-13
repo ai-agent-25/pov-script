@@ -7,7 +7,8 @@ import { SpeakerTranscript } from "./SpeakerTranscript";
 import { RolesAndTranscriptsType, TranscriptsPropsType } from "../types/types";
 
 export const Transcripts = ({ rolesAndTranscripts }: TranscriptsPropsType) => {
-  const [selectedSpeaker, setSelectedSpeaker] = useState<string | null>(null);
+  const [selectedSpeaker, setSelectedSpeaker] =
+    useState<RolesAndTranscriptsType | null>(null);
   const [links, setLinks] = useState<string[]>(["Transcripts"]);
 
   const handleBreadCrumbClick = (
