@@ -21,7 +21,7 @@ export const Transcripts = ({ rolesAndTranscripts }: TranscriptsPropsType) => {
   useEffect(() => {
     if (selectedSpeaker) {
       const currentLinks = cloneDeep(links);
-      currentLinks[1] = selectedSpeaker;
+      currentLinks[1] = selectedSpeaker.role;
       setLinks(currentLinks);
     } else {
       setLinks(["Transcripts"]);
