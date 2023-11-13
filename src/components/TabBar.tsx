@@ -79,14 +79,29 @@ export const TabBar = () => {
     let splitOnRoles = splitOnContext.split("\n");
     console.log(splitOnRoles);
     let currentRolesAndTranscripts = [];
+    let trackingIndex: number = 0;
     for (let index = 1; index < splitOnRoles.length - 1; index += 2) {
       if (splitOnRoles[index + 1].indexOf("You are") !== -1) {
         currentRolesAndTranscripts.push({
           role: splitOnRoles[index].slice(0, -1),
           transcript: splitOnRoles[index + 1],
         });
+      } else {
+        trackingIndex = index;
+        break;
       }
     }
+
+    trackingIndex += 2;
+
+    let commonTranscript = splitOnRoles
+      .splice(trackingIndex, splitOnRoles.length)
+      .join("\n");
+
+    currentRolesAndTranscripts = currentRolesAndTranscripts.map((item) => ({
+      ...item,
+      transcript: "SYSTEM:\n" + item.transcript + "\n" + commonTranscript,
+    }));
   }, [script]);
 
   useEffect(() => {
