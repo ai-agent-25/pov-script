@@ -114,9 +114,9 @@ export const TabBar = () => {
 
     let steps = script.split("STEP").slice(1);
     steps = steps.filter((step) => !step.includes("[StepName]"));
-    steps = steps.map((step) => "STEP" + removeKeywords(step));
+    steps = steps.map((step) => "- STEP" + removeKeywords(step));
 
-    let additionalOrchestratorScript = steps.join("\n");
+    let additionalOrchestratorScript = "- GOAL\n" + goal + steps.join("\n");
     currentRolesAndTranscripts[orchestratorIndex].messages[0].content +=
       additionalOrchestratorScript;
 
