@@ -112,6 +112,10 @@ export const TabBar = () => {
     steps = steps.filter((step) => !step.includes("[StepName]"));
     steps = steps.map((step) => "STEP" + removeKeywords(step));
 
+    let additionalOrchestratorScript = steps.join("\n");
+    currentRolesAndTranscripts[orchestratorIndex].messages[0].content +=
+      additionalOrchestratorScript;
+
     setRolesAndTranscripts(currentRolesAndTranscripts);
   }, [script]);
 
