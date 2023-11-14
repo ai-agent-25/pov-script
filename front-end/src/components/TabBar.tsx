@@ -98,10 +98,11 @@ export const TabBar = () => {
       .splice(trackingIndex, splitOnRoles.length)
       .join("\n");
 
-    currentRolesAndTranscripts = currentRolesAndTranscripts.map((item) => ({
-      ...item,
-      transcript: "SYSTEM:\n" + item.transcript + "\n" + commonTranscript,
-    }));
+    currentRolesAndTranscripts = currentRolesAndTranscripts.map((item) => {
+      item.messages[0].content =
+        item.messages[0].content + "\n" + commonTranscript;
+      return item;
+    });
 
     console.log(currentRolesAndTranscripts);
     setRolesAndTranscripts(currentRolesAndTranscripts);
