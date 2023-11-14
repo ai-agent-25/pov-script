@@ -1,5 +1,5 @@
 import { MessagesType } from "../types/types";
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "https://pov-script.onrender.com";
 
 export const createMessage = async (messages: MessagesType[]) => {
   return fetch(`${BASE_URL}/`, {
