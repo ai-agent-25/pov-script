@@ -103,10 +103,14 @@ export const TabBar = () => {
       return item;
     });
 
-    let orchestratorIndex: number = -1;
+    let orchestratorIndex: number = 0;
     currentRolesAndTranscripts.find((item, index) => {
       return item.role === "Orchestrator" ? (orchestratorIndex = index) : null;
     });
+
+    let steps = script.split("STEP").slice(1);
+    steps = steps.filter((step) => !step.includes("[StepName]"));
+    steps = steps.map((step) => "STEP" + removeKeywords(step));
 
     setRolesAndTranscripts(currentRolesAndTranscripts);
   }, [script]);
