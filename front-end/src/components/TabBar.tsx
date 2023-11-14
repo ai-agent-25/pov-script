@@ -84,7 +84,7 @@ export const TabBar = () => {
       if (splitOnRoles[index + 1].indexOf("You are") !== -1) {
         currentRolesAndTranscripts.push({
           role: splitOnRoles[index].slice(0, -1),
-          transcript: splitOnRoles[index + 1],
+          messages: [{ role: "system", content: splitOnRoles[index + 1] }],
         });
       } else {
         trackingIndex = index;
