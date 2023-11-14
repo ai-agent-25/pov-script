@@ -5,7 +5,7 @@ export type MessagesType = {
 
 export type RolesAndTranscriptsType = {
   role: string;
-  transcript: string;
+  messages: MessagesType[];
 };
 
 export type ScriptPropsType = {
