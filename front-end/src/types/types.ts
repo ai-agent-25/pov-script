@@ -14,7 +14,7 @@ export type ScriptPropsType = {
 };
 
 export type SpeakerTranscriptPropsType = {
-  script: string;
+  messages: MessagesType[];
 };
 
 export type TabPanelPropsType = {
