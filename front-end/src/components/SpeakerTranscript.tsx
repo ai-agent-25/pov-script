@@ -1,14 +1,17 @@
+import { useState, useEffect } from "react";
 import { EditorView } from "@codemirror/view";
 import { aura } from "@uiw/codemirror-theme-aura";
 import CodeMirror from "@uiw/react-codemirror";
 import { SpeakerTranscriptPropsType } from "../types/types";
 
-export const SpeakerTranscript = ({ script }: SpeakerTranscriptPropsType) => {
+export const SpeakerTranscript = ({ messages }: SpeakerTranscriptPropsType) => {
+  const [transcript, setTranscript] = useState("");
+
   return (
     <CodeMirror
       extensions={[EditorView.lineWrapping]}
       editable={false}
-      value={script}
+      value={transcript}
       maxHeight="65vh"
       placeholder={"Your script here."}
       theme={aura}
