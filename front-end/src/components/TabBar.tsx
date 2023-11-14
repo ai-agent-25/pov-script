@@ -108,6 +108,10 @@ export const TabBar = () => {
       return item.role === "Orchestrator" ? (orchestratorIndex = index) : null;
     });
 
+    let regexPattern = new RegExp(".*\\b" + "goal" + "\\b.*", "i");
+    let match = script.match(regexPattern);
+    let goal = match ? match[0].trim() : null;
+
     let steps = script.split("STEP").slice(1);
     steps = steps.filter((step) => !step.includes("[StepName]"));
     steps = steps.map((step) => "STEP" + removeKeywords(step));
