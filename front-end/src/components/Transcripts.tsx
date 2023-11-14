@@ -36,7 +36,7 @@ export const Transcripts = ({ rolesAndTranscripts }: TranscriptsPropsType) => {
       />
       <Box sx={{ mt: 3 }}>
         {selectedSpeaker ? (
-          <SpeakerTranscript script={selectedSpeaker?.transcript} />
+          <SpeakerTranscript messages={selectedSpeaker?.messages} />
         ) : (
           rolesAndTranscripts?.map((roleAndTranscript, index) => (
             <Button
