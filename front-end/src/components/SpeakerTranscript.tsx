@@ -6,7 +6,14 @@ import { SpeakerTranscriptPropsType } from "../types/types";
 
 export const SpeakerTranscript = ({ messages }: SpeakerTranscriptPropsType) => {
   const [transcript, setTranscript] = useState("");
-
+  useEffect(() => {
+    let currentTranscript = "";
+    messages.map((message) => {
+      currentTranscript +=
+        message.role.toUpperCase() + "\n" + message.content + "\n\n";
+    });
+    setTranscript(currentTranscript);
+  }, [messages]);
   return (
     <CodeMirror
       extensions={[EditorView.lineWrapping]}
