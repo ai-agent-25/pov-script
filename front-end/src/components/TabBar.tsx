@@ -16,6 +16,7 @@ import {
 import { MessagesType, RolesAndTranscriptsType, TabType } from "../types/types";
 import { scriptData } from "../constants";
 import { cloneDeep } from "lodash";
+import { removeKeywords } from "../utils/helpers";
 
 function a11yProps(index: number, value: number) {
   return {
@@ -75,9 +76,7 @@ export const TabBar = () => {
 
   useEffect(() => {
     let splitOnContext = script.split("# CONTEXT")[1];
-    console.log(splitOnContext);
     let splitOnRoles = splitOnContext.split("\n");
-    console.log(splitOnRoles);
     let currentRolesAndTranscripts = [];
     let trackingIndex: number = 0;
     for (let index = 1; index < splitOnRoles.length - 1; index += 2) {
@@ -104,7 +103,11 @@ export const TabBar = () => {
       return item;
     });
 
-    console.log(currentRolesAndTranscripts);
+    let orchestratorIndex: number = -1;
+    currentRolesAndTranscripts.find((item, index) => {
+      return item.role === "Orchestrator" ? (orchestratorIndex = index) : null;
+    });
+
     setRolesAndTranscripts(currentRolesAndTranscripts);
   }, [script]);
 
