@@ -1,4 +1,4 @@
-export const keywordsData = [
+export const keywordsData: string[] = [
   "STEP",
   "DIALOG",
   "ROLE",
