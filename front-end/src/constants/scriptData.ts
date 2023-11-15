@@ -126,6 +126,7 @@ Critic:
 
 Manager, Orchestor, Critic, @User, @FinUser, PresentationExpert
 - To communicate with others you need to send a message using the following format =><Your role> to <Receiver>:<Your message>
+- If the user is a human user, append @ in front of their role name
 - If it is not specified which Message Type to use, use GROUP
 - If you are instructed to call a function in the format ->FunctionName, do so using the following format: [You] to SYSTEM: ->FunctionName(Parameters)
 `;
