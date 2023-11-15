@@ -120,6 +120,13 @@ export const TabBar = () => {
     currentRolesAndTranscripts[orchestratorIndex].messages[0].content +=
       additionalOrchestratorScript;
 
+    let splitOnOrchestrationLoop = removeKeywords(
+      script.split("ORCHESTRATION_LOOP")[1].split("ACTION")[1],
+      keywordsData.filter((keyword) => keyword !== "STEP")
+    ).replace(/\t/g, "");
+
+    console.log(splitOnOrchestrationLoop);
+
     setRolesAndTranscripts(currentRolesAndTranscripts);
   }, [script]);
 
