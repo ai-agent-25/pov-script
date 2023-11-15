@@ -14,7 +14,7 @@ import {
   UserChat,
 } from ".";
 import { MessagesType, RolesAndTranscriptsType, TabType } from "../types/types";
-import { scriptData } from "../constants";
+import { keywordsData, scriptData } from "../constants";
 import { cloneDeep } from "lodash";
 import { removeKeywords } from "../utils/helpers";
 
@@ -114,7 +114,7 @@ export const TabBar = () => {
 
     let steps = script.split("STEP").slice(1);
     steps = steps.filter((step) => !step.includes("[StepName]"));
-    steps = steps.map((step) => "- STEP" + removeKeywords(step));
+    steps = steps.map((step) => "- STEP" + removeKeywords(step, keywordsData));
 
     let additionalOrchestratorScript = "- GOAL\n" + goal + steps.join("\n");
     currentRolesAndTranscripts[orchestratorIndex].messages[0].content +=
