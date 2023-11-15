@@ -125,7 +125,10 @@ export const TabBar = () => {
       keywordsData.filter((keyword) => keyword !== "STEP")
     ).replace(/\t/g, "");
 
-    console.log(splitOnOrchestrationLoop);
+    currentRolesAndTranscripts[orchestratorIndex].messages.push({
+      role: "user",
+      content: splitOnOrchestrationLoop,
+    });
 
     setRolesAndTranscripts(currentRolesAndTranscripts);
   }, [script]);
