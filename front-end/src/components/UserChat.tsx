@@ -27,7 +27,7 @@ export const UserChat = ({ messages, setMessages }: UserChatPropsType) => {
       let currentMessages = cloneDeep(messages);
       currentMessages.push({
         role: "user",
-        content: `@User to Manager: ${message}`,
+        content: `@User to Orchestrator: ${message}`,
       });
       setMessages(currentMessages);
       setMessage("");
