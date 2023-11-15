@@ -12,6 +12,7 @@ export const SpeakerTranscript = ({ messages }: SpeakerTranscriptPropsType) => {
       currentTranscript +=
         message.role.toUpperCase() + "\n" + message.content + "\n\n";
     });
+    currentTranscript = currentTranscript.trim();
     setTranscript(currentTranscript);
   }, [messages]);
   return (
