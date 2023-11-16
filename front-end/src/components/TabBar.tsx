@@ -53,7 +53,14 @@ export const TabBar = () => {
   const [tabs, setTabs] = useState<TabType[]>([
     {
       tab: "@User Chat",
-      component: <UserChat messages={messages} setMessages={setMessages} />,
+      component: (
+        <UserChat
+          messages={messages}
+          setMessages={setMessages}
+          rolesAndTranscripts={rolesAndTranscripts}
+          setRolesAndTranscripts={setRolesAndTranscripts}
+        />
+      ),
     },
     { tab: "@FinUser Chat", component: <FinUserChat /> },
     { tab: "Chat History", component: <ChatHistory /> },
