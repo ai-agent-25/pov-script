@@ -48,4 +48,8 @@ export type TranscriptsType = {
 export type UserChatPropsType = {
   messages: MessagesType[];
   setMessages: React.Dispatch<React.SetStateAction<MessagesType[]>>;
+  rolesAndTranscripts: RolesAndTranscriptsType[];
+  setRolesAndTranscripts: React.Dispatch<
+    React.SetStateAction<RolesAndTranscriptsType[]>
+  >;
 };
