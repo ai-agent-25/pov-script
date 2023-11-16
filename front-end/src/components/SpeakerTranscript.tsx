@@ -10,7 +10,10 @@ export const SpeakerTranscript = ({ messages }: SpeakerTranscriptPropsType) => {
     let currentTranscript = "";
     messages.map((message) => {
       currentTranscript +=
-        message.role.toUpperCase() + "\n" + message.content + "\n\n";
+        (message.role === "assistant" ? "AGENT" : message.role.toUpperCase()) +
+        "\n" +
+        message.content +
+        "\n\n";
     });
     currentTranscript = currentTranscript.trim();
     setTranscript(currentTranscript);
