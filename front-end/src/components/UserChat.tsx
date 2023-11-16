@@ -42,11 +42,14 @@ export const UserChat = ({
   useEffect(() => {
     if (messages.length > 1 && messages[messages.length - 1]?.role === "user") {
       setLoading(true);
+      let currentMessages = cloneDeep(messages);
+      let currentRolesAndTranscripts = cloneDeep(rolesAndTranscripts);
       createMessage(currentMessages)
         .then((result) => {
           currentMessages.push(result);
-          console.log(currentMessages);
           setMessages(currentMessages);
+          currentRolesAndTranscripts[0].messages = currentMessages;
+          setRolesAndTranscripts(currentRolesAndTranscripts);
           setLoading(false);
         })
         .catch((error) => {
