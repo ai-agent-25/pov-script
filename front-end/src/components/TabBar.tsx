@@ -140,22 +140,17 @@ export const TabBar = () => {
     newTabs[3].component = (
       <Transcripts rolesAndTranscripts={rolesAndTranscripts} />
     );
-    setTabs(newTabs);
-  }, [rolesAndTranscripts]);
-
-  useEffect(() => {
-    const newTabs = cloneDeep(tabs);
+    newTabs[0].component = (
+      <UserChat
+        messages={messages}
+        setMessages={setMessages}
+        rolesAndTranscripts={rolesAndTranscripts}
+        setRolesAndTranscripts={setRolesAndTranscripts}
+      />
+    );
     newTabs[4].component = <Script script={script} setScript={setScript} />;
     setTabs(newTabs);
-  }, [script]);
-
-  useEffect(() => {
-    const newTabs = cloneDeep(tabs);
-    newTabs[0].component = (
-      <UserChat messages={messages} setMessages={setMessages} />
-    );
-    setTabs(newTabs);
-  }, [messages]);
+  }, [messages, rolesAndTranscripts, script]);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
