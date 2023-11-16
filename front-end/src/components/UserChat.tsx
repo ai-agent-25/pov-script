@@ -102,7 +102,7 @@ export const UserChat = ({
                 justifyContent: "center",
               }}
             >
-              Manager to @User:
+              Orchestrator to @User:
               <CircularProgress sx={{ ml: 1 }} size={22} thickness={7} />
             </Typography>
           </Box>
