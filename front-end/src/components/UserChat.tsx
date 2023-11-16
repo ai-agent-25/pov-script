@@ -8,11 +8,16 @@ import Typography from "@mui/material/Typography";
 import TextField from "@mui/material/TextField";
 import SendIcon from "@mui/icons-material/Send";
 import { theme } from "../utils";
-import { cloneDeep } from "lodash";
+import { clone, cloneDeep } from "lodash";
 import { createMessage } from "../services/Api";
 import { UserChatPropsType } from "../types/types";
 
-export const UserChat = ({ messages, setMessages }: UserChatPropsType) => {
+export const UserChat = ({
+  messages,
+  setMessages,
+  rolesAndTranscripts,
+  setRolesAndTranscripts,
+}: UserChatPropsType) => {
   const [message, setMessage] = useState<string>("");
   const [loading, setLoading] = useState(false);
 
