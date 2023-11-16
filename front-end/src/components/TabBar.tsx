@@ -132,6 +132,7 @@ export const TabBar = () => {
     });
 
     setRolesAndTranscripts(currentRolesAndTranscripts);
+    setMessages(currentRolesAndTranscripts[0].messages);
   }, [script]);
 
   useEffect(() => {
