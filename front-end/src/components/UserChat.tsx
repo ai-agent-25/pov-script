@@ -79,6 +79,7 @@ export const UserChat = ({
         <Typography sx={{ mb: 3 }}>@User Chat</Typography>
         {messages.map(
           (message, index) =>
+            message.content?.includes("@User") &&
             index > 0 && (
               <Typography
                 variant="body2"
